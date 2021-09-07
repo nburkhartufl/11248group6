@@ -1,6 +1,6 @@
 # 11248group6
 
-Member 1:
+Member 1: Noah Burkhart
 
 Member 2: Corey Wolfe
 
