@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace powergenerators
 {
-    abstract class EnergyGenerator
+    abstract public class EnergyGenerator
     {
         //GetUnlock
         protected int pollutionUnlock;
