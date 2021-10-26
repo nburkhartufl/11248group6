@@ -5,44 +5,67 @@ using TMPro;
 using datacounters;
 using powerbankcomponent;
 
-public class CounterComponent : MonoBehaviour
+
+namespace counterscomponent
 {
-
-    [SerializeField]
-    TextMeshProUGUI energyCount, pollutionCount;
-
-    private EnergyCounter energyCounter = new EnergyCounter();
-    private PollutionCounter pollutionCounter = new PollutionCounter();
-
-    public GameObject otherGameObject;
-
-    //TODO REFERENCE POWERBANKCOMPONENT TO COUNTERCOMPONENT AND SET THE RATE INCREASE TO POWERBANKCOMPONENT
-
-    // Start is called before the first frame update
-    void Start() //Deserializes the counters
+    public class CounterComponent : MonoBehaviour
     {
-        energyCounter.SetCurrCounter(1); //set this to a value from serializefile
-        energyCounter.SetMaxCounter(1); //set this to a value from serializefile
 
-        pollutionCounter.SetCurrCounter(1); //set this to a value from serializefile
-        pollutionCounter.SetMaxCounter(1); //set this to a value from the serializefile
+        [SerializeField]
+        TextMeshProUGUI energyCount, pollutionCount;
 
-        InitializeCounters();
+        private EnergyCounter energyCounter = new EnergyCounter();
+        private PollutionCounter pollutionCounter = new PollutionCounter();
 
-        InvokeRepeating("CounterUpdate", 0, 1); //Calls CounterUpdate every second;
-    }
+        //TODO REFERENCE POWERBANKCOMPONENT TO COUNTERCOMPONENT AND SET THE RATE INCREASE TO POWERBANKCOMPONENT
 
-    public void CounterUpdate()
-    {
-        energyCounter.SetCurrCounter(1);
-        pollutionCounter.SetCurrCounter(1);
+        // Start is called before the first frame update
+        void Start() //Deserializes the counters
+        {
+            energyCounter.SetCurrCounter(0); //set this to a value from serializefile
+            energyCounter.SetMaxCounter(0); //set this to a value from serializefile
 
-        InitializeCounters();
-    }
+            pollutionCounter.SetCurrCounter(0); //set this to a value from serializefile
+            pollutionCounter.SetMaxCounter(0); //set this to a value from the serializefile
 
-    public void InitializeCounters()
-    {
-        energyCount.text = energyCounter.GetCurrCounter().ToString();
-        pollutionCount.text = pollutionCounter.GetCurrCounter().ToString();
+            InitializeCounters();
+
+            InvokeRepeating("CounterUpdate", 0, 1); //Calls CounterUpdate every second;
+        }
+
+        public void CounterUpdate()
+        {
+            energyCounter.SetCurrCounter(FindObjectOfType<PowerBankComponent>().GetEnergyPerSecond());
+
+            pollutionCounter.SetCurrCounter(FindObjectOfType<PowerBankComponent>().GetPollutionPerSecond());
+
+            InitializeCounters();
+        }
+
+        public int GetEnergyCount()
+        {
+            return energyCounter.GetCurrCounter();
+        }
+
+        public int GetPollutionCount()
+        {
+            return pollutionCounter.GetCurrCounter();
+        }
+
+        public void SubstractEnergyCount(int offset)
+        {
+            energyCounter.SubtractCurrCounter(offset);
+        }
+
+        public void SubtractPollutionCount(int offset)
+        {
+            pollutionCounter.SubtractCurrCounter(offset);
+        }
+
+        public void InitializeCounters()
+        {
+            energyCount.text = energyCounter.GetCurrCounter().ToString();
+            pollutionCount.text = pollutionCounter.GetCurrCounter().ToString();
+        }
     }
 }

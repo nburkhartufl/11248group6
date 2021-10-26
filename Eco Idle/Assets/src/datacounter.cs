@@ -30,6 +30,11 @@ namespace datacounters
         {
             maxCounter = maxCounter + offset;
         }
+        public void SubtractCurrCounter(int offset)
+        {
+            currCounter = currCounter - offset;
+        }
+
     }
 
     class EnergyCounter : DataCounter
