@@ -6,4 +6,4 @@ Member 2: Corey Wolfe
 
 Member 3: Rosario Firmino
 
-Member 4:
+Member 4: Kemari Chen Loy
