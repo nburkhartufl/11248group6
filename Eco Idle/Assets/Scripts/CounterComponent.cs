@@ -5,7 +5,6 @@ using TMPro;
 using datacounters;
 using powerbankcomponent;
 
-
 namespace counterscomponent
 {
     public class CounterComponent : MonoBehaviour
@@ -16,6 +15,8 @@ namespace counterscomponent
 
         private EnergyCounter energyCounter = new EnergyCounter();
         private PollutionCounter pollutionCounter = new PollutionCounter();
+
+        private int energyPerSecond, pollutionPerSecond;
 
         //TODO REFERENCE POWERBANKCOMPONENT TO COUNTERCOMPONENT AND SET THE RATE INCREASE TO POWERBANKCOMPONENT
 
@@ -35,9 +36,10 @@ namespace counterscomponent
 
         public void CounterUpdate()
         {
-            energyCounter.SetCurrCounter(FindObjectOfType<PowerBankComponent>().GetEnergyPerSecond());
 
-            pollutionCounter.SetCurrCounter(FindObjectOfType<PowerBankComponent>().GetPollutionPerSecond());
+            energyCounter.SetCurrCounter(energyPerSecond);
+
+            pollutionCounter.SetCurrCounter(pollutionPerSecond);
 
             InitializeCounters();
         }
@@ -47,9 +49,19 @@ namespace counterscomponent
             return energyCounter.GetCurrCounter();
         }
 
+        public void SetEnergyPerSecond(int eps)
+        {
+            energyPerSecond = eps;
+        }
+
         public int GetPollutionCount()
         {
             return pollutionCounter.GetCurrCounter();
+        }
+
+        public void SetPollutionPerSecond(int pps)
+        {
+            pollutionPerSecond = pps;
         }
 
         public void SubstractEnergyCount(int offset)
@@ -60,6 +72,16 @@ namespace counterscomponent
         public void SubtractPollutionCount(int offset)
         {
             pollutionCounter.SubtractCurrCounter(offset);
+        }
+
+        public int GetMaxEnergyCount()
+        {
+            return energyCounter.GetMaxCounter();
+        }
+
+        public int GetMaxPollutionCount()
+        {
+            return pollutionCounter.GetMaxCounter();
         }
 
         public void InitializeCounters()

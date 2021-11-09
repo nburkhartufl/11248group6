@@ -96,11 +96,11 @@ namespace powerbankcomponent
             {
                 if (!entry.Value.GetEmpty())
                 {
+                    //CounterComponent.energyPerSecond
                     energyPerSecond = energyPerSecond + entry.Value.GetGenerator().GetEnergyRate();
                 }
             }
 
-            UpdatePerSecond();
         }
 
         public void CalculatePollutionPerSecond()
@@ -113,6 +113,7 @@ namespace powerbankcomponent
                     pollutionPerSecond = pollutionPerSecond + entry.Value.GetGenerator().GetEnergyRate();
                 }
             }
+            UpdatePerSecond();
         }
 
         public void CalculateSlotsUsed()
@@ -146,7 +147,9 @@ namespace powerbankcomponent
         protected void UpdatePerSecond()
         {
             energyPS.text = "ENERGY PER SECOND: " + GetEnergyPerSecond().ToString();
+            FindObjectOfType<CounterComponent>().SetEnergyPerSecond(energyPerSecond);
             pollutionPS.text = "POLLUTION PER SECOND: " + GetPollutionPerSecond().ToString();
+            FindObjectOfType<CounterComponent>().SetPollutionPerSecond(pollutionPerSecond);
             powerBankSpace.text = "POWER BANK SPACE USED: " + GetSlotsUsed() + "/" + GetSlotsAvailable() ;
         }
 
