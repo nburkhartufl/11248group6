@@ -31,6 +31,13 @@ namespace powergenerators
         {
             return energyRate;
         }
+<<<<<<< Updated upstream
+=======
+        public int GetPollutionRate()
+        {
+            return 0;
+        }
+>>>>>>> Stashed changes
         public int GetCost()
         {
             return storeCost;
@@ -192,7 +199,11 @@ namespace powergenerators
 
             preRequisites.Add("Electromagnetic Dynamo");
 
+<<<<<<< Updated upstream
             type = "Solar Cluster";
+=======
+            type = "Diesel Generator";
+>>>>>>> Stashed changes
         }
     }
 
