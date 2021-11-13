@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using powerbankcomponent;
+using TMPro;
+using UnityEngine.UI;
+using powergenerators;
+using counterscomponent;
 
-public class NewBehaviourScript : MonoBehaviour
+namespace shopcomponent
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    public class ShopComponent : MonoBehaviour
     {
         
     }

@@ -31,6 +31,8 @@ namespace techtreecomponent
 
         private bool saveGame;
 
+        private GeneratorTypes gt = new GeneratorTypes();
+
         // Start is called before the first frame update
         void Start()
         {
@@ -51,7 +53,7 @@ namespace techtreecomponent
                     FindObjectOfType<CounterComponent>().GetMaxPollutionCount() >= entry.Value.GetGenerator().GetUnlock()[1])
                 {
                     entry.Value.SetUnlocked();
-                    //FindObjectOfType<GeneratorTypes>().UnlockGenerator(entry.Value.GetGenerator().GetTypeExplicit());
+                    gt.UnlockGenerator(entry.Value.GetGenerator().GetTypeExplicit());
                 }
             }
         }

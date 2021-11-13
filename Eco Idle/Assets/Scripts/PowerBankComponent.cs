@@ -96,18 +96,11 @@ namespace powerbankcomponent
             {
                 if (!entry.Value.GetEmpty())
                 {
-<<<<<<< Updated upstream
-=======
                     //CounterComponent.energyPerSecond
->>>>>>> Stashed changes
                     energyPerSecond = energyPerSecond + entry.Value.GetGenerator().GetEnergyRate();
                 }
             }
 
-<<<<<<< Updated upstream
-            UpdatePerSecond();
-=======
->>>>>>> Stashed changes
         }
 
         public void CalculatePollutionPerSecond()
@@ -120,10 +113,7 @@ namespace powerbankcomponent
                     pollutionPerSecond = pollutionPerSecond + entry.Value.GetGenerator().GetEnergyRate();
                 }
             }
-<<<<<<< Updated upstream
-=======
             UpdatePerSecond();
->>>>>>> Stashed changes
         }
 
         public void CalculateSlotsUsed()
@@ -157,17 +147,13 @@ namespace powerbankcomponent
         protected void UpdatePerSecond()
         {
             energyPS.text = "ENERGY PER SECOND: " + GetEnergyPerSecond().ToString();
-<<<<<<< Updated upstream
-            pollutionPS.text = "POLLUTION PER SECOND: " + GetPollutionPerSecond().ToString();
-=======
             FindObjectOfType<CounterComponent>().SetEnergyPerSecond(energyPerSecond);
             pollutionPS.text = "POLLUTION PER SECOND: " + GetPollutionPerSecond().ToString();
             FindObjectOfType<CounterComponent>().SetPollutionPerSecond(pollutionPerSecond);
->>>>>>> Stashed changes
             powerBankSpace.text = "POWER BANK SPACE USED: " + GetSlotsUsed() + "/" + GetSlotsAvailable() ;
         }
 
-        public bool AddGenerator(EnergyGenerator addGenerator)
+        public void AddGenerator(EnergyGenerator addGenerator)
         {
             bool added = false;
 
@@ -180,7 +166,7 @@ namespace powerbankcomponent
                 }
             }
 
-            return added;
+ 
         }
 
         public void UpdateSpriteFamilies()

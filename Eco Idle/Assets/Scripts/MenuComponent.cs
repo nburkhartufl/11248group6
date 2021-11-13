@@ -8,7 +8,7 @@ public class MenuComponent : MonoBehaviour
 {
 
     [SerializeField]//Scenes
-    private GameObject powerBank, storage, techTree, shop, options, scenes;
+    private GameObject powerBank, storage, techTree, shop, options, scenes, blank;
 
     [SerializeField]//Images
     private Sprite selectedBtn;
@@ -28,6 +28,7 @@ public class MenuComponent : MonoBehaviour
         }
         powerBank.SetActive(true);
         powerBankBtn.Select();
+        blank.SetActive(false);
     }
 
     public GameObject GetActive()
@@ -36,7 +37,7 @@ public class MenuComponent : MonoBehaviour
 
         for(int i = 0; i < scenes.transform.childCount; i++)
         {
-            if (scenes.transform.GetChild(i).gameObject.activeSelf)
+            if (scenes.transform.GetChild(i).gameObject.activeSelf && scenes.transform.GetChild(i).gameObject != blank)
             {
                 activeScene = scenes.transform.GetChild(i).gameObject;
             }
@@ -49,23 +50,31 @@ public class MenuComponent : MonoBehaviour
     {
         GetActive().SetActive(false);
         powerBank.SetActive(true);
+        blank.SetActive(false);
     }
 
     public void Storage()
     {
         GetActive().SetActive(false);
         storage.SetActive(true);
+        blank.SetActive(false);
     }
 
     public void TechTree()
     {
         GetActive().SetActive(false);
         techTree.SetActive(true);
+        blank.SetActive(false);
+
     }
 
     public void Shop()
     {
-        GetActive().SetActive(false);
+        if(GetActive()==powerBank){
+            blank.SetActive(true);
+        }else{
+            GetActive().SetActive(false);
+        }
         shop.SetActive(true);
     }
 
@@ -73,6 +82,7 @@ public class MenuComponent : MonoBehaviour
     {
         GetActive().SetActive(false);
         options.SetActive(true);
+        blank.SetActive(false);
     }
 
     public void QuitGame()
