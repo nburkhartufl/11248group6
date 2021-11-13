@@ -34,6 +34,11 @@ namespace datacounters
         {
             currCounter = currCounter - offset;
         }
+        public void ResetCounter()
+        {
+            currCounter = 0;
+            maxCounter = 0;
+        }
 
     }
 

@@ -31,7 +31,7 @@ namespace powergenerators
         {
             return energyRate;
         }
-        public int GetPollutionRate()
+        public virtual int GetPollutionRate()
         {
             return 0;
         }
@@ -60,7 +60,7 @@ namespace powergenerators
         //GetPollutionRate
         protected int pollutionRate;
 
-        public int GetPollutionRate()
+        public override int GetPollutionRate()
         {
             return pollutionRate;
         }
@@ -72,6 +72,11 @@ namespace powergenerators
 
     abstract class CleanEnergyGenerator : EnergyGenerator
     {
+        public override int GetPollutionRate()
+        {
+            return 0;
+        }
+
         public override bool GetClean()
         {
             return true;

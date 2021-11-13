@@ -8,7 +8,7 @@ public class MenuComponent : MonoBehaviour
 {
 
     [SerializeField]//Scenes
-    private GameObject powerBank, storage, techTree, shop, options, scenes, blank;
+    private GameObject powerBank, techTree, shop, options, scenes, blank;
 
     [SerializeField]//Images
     private Sprite selectedBtn;
@@ -53,18 +53,22 @@ public class MenuComponent : MonoBehaviour
         blank.SetActive(false);
     }
 
-    public void Storage()
+    /*public void Storage()
     {
-        GetActive().SetActive(false);
+        while (GetActive() != null)
+        {
+            GetActive().SetActive(false);
+        }
         storage.SetActive(true);
-        blank.SetActive(false);
-    }
+    }*/
 
     public void TechTree()
     {
-        GetActive().SetActive(false);
+        while (GetActive() != null)
+        {
+            GetActive().SetActive(false);
+        }
         techTree.SetActive(true);
-        blank.SetActive(false);
 
     }
 
@@ -74,15 +78,21 @@ public class MenuComponent : MonoBehaviour
             blank.SetActive(true);
         }else{
             GetActive().SetActive(false);
+            powerBank.SetActive(true);
+            blank.SetActive(true);
         }
         shop.SetActive(true);
     }
 
     public void Options()
     {
-        GetActive().SetActive(false);
+        while (GetActive() != null)
+        {
+            GetActive().SetActive(false);
+        }
+        powerBank.SetActive(true);
+        blank.SetActive(true);
         options.SetActive(true);
-        blank.SetActive(false);
     }
 
     public void QuitGame()

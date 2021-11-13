@@ -40,17 +40,263 @@ namespace powerbankcomponent
         void Start() //Deserialize PowerBank
         {
             InitializeSlots();
-            
+            InitializeUnlocked();
+            InitializeGenerators();
             InvokeRepeating("CalculateEnergyPerSecond", 0, 1);
             InvokeRepeating("CalculatePollutionPerSecond", 0, 1);
             InvokeRepeating("CalculateSlotsUsed", 0, 1);
             InvokeRepeating("UpdateSpriteFamilies", 0, 1);
         }
 
-        // Update is called once per frame
-        void Update()
+        void InitializeGenerators()
         {
-            
+            if (PlayerPrefs.HasKey("genSlotTwo"))
+            {
+               powerBankSlots[slotTwo].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotTwo")));
+            }
+            if (PlayerPrefs.HasKey("genSlotThree"))
+            {
+                powerBankSlots[slotThree].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotThree")));
+            }
+            if (PlayerPrefs.HasKey("genSlotFour"))
+            {
+                powerBankSlots[slotFour].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotFour")));
+            }
+            if (PlayerPrefs.HasKey("genSlotFive"))
+            {
+                powerBankSlots[slotFive].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotFive")));
+            }
+            if (PlayerPrefs.HasKey("genSlotSix"))
+            {
+                powerBankSlots[slotSix].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotSix")));
+            }
+            if (PlayerPrefs.HasKey("genSlotSeven"))
+            {
+                powerBankSlots[slotSeven].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotSeven")));
+            }
+            if (PlayerPrefs.HasKey("genSlotEight"))
+            {
+                powerBankSlots[slotEight].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotEight")));
+            }
+            if (PlayerPrefs.HasKey("genSlotNine"))
+            {
+                powerBankSlots[slotNine].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotNine")));
+            }
+            if (PlayerPrefs.HasKey("genSlotTen"))
+            {
+                powerBankSlots[slotTen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotTen")));
+            }
+            if (PlayerPrefs.HasKey("genSlotEleven"))
+            {
+                powerBankSlots[slotEleven].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotEleven")));
+            }
+            if (PlayerPrefs.HasKey("genSlotTwelve"))
+            {
+                powerBankSlots[slotTwelve].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotTwelve")));
+            }
+            if (PlayerPrefs.HasKey("genSlotThirteen"))
+            {
+                powerBankSlots[slotThirteen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotThirteen")));
+            }
+            if (PlayerPrefs.HasKey("genSlotFourteen"))
+            {
+                powerBankSlots[slotFourteen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotFourteen")));
+            }
+            if (PlayerPrefs.HasKey("genSlotFifteen"))
+            {
+                powerBankSlots[slotFifteen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotFifteen")));
+            }
+            if (PlayerPrefs.HasKey("genSlotSixteen"))
+            {
+                powerBankSlots[slotSixteen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotSixteen")));
+            }
+            if (PlayerPrefs.HasKey("genSlotSeventeen"))
+            {
+                powerBankSlots[slotSeventeen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotSeventeen")));
+            }
+            if (PlayerPrefs.HasKey("genSlotEightteen"))
+            {
+                powerBankSlots[slotEightteen].SetGenerator(StringToGen(PlayerPrefs.GetString("genSlotEightteen")));
+            }
+
+        }
+        EnergyGenerator StringToGen(string genName)
+        {
+            if(genName == "Faraday Disk")
+            {
+                return new FaradayGenerator();
+            }
+            else if(genName == "Electromagnetic Dynamo")
+            {
+                return new ElectromagneticGenerator();
+            }
+            else if (genName == "Hydro Turbine")
+            {
+                return new HydroGenerator();
+            }
+            else if (genName == "Solar Cluster")
+            {
+                return new SolarGenerator();
+            }
+            else if (genName == "Wind Farm")
+            {
+                return new WindGenerator();
+            }
+            else if (genName == "Geothermal Plant")
+            {
+                return new GeothermalGenerator();
+            }
+            else if (genName == "Diesel Generator")
+            {
+                return new DieselGenerator();
+            }
+            else if (genName == "Coal Generator")
+            {
+                return new CoalGenerator();
+            }
+            else if (genName == "Biofuel Generator")
+            {
+                return new BiofuelGenerator();
+            }
+            else if (genName == "Natural Gas Generator")
+            {
+                return new NaturalGasGenerator();
+            }
+            else if (genName == "Nuclear Plant")
+            {
+                return new NuclearGenerator();
+            }
+            else if (genName == "Antimatter Generator")
+            {
+                return new AntiGenerator();
+            }
+            else if (genName == "Dyson Sphere")
+            {
+                return new DysonGenerator();
+            }
+            return null;
+        }
+        void InitializeUnlocked()
+        {
+            if (PlayerPrefs.HasKey("pbSlotTwoLock"))
+            {
+                if(PlayerPrefs.GetInt("pbSlotTwoLock") == 0)
+                {
+                    powerBankSlots[slotTwo].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotThreeLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotThreeLock") == 0)
+                {
+                    powerBankSlots[slotThree].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotFourLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotFourLock") == 0)
+                {
+                    powerBankSlots[slotFour].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotFiveLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotFiveLock") == 0)
+                {
+                    powerBankSlots[slotFive].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotSixLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotSixLock") == 0)
+                {
+                    powerBankSlots[slotSix].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotSevenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotSevenLock") == 0)
+                {
+                    powerBankSlots[slotSeven].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotEightLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotEightLock") == 0)
+                {
+                    powerBankSlots[slotEight].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotNineLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotNineLock") == 0)
+                {
+                    powerBankSlots[slotNine].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotTenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotTenLock") == 0)
+                {
+                    powerBankSlots[slotTen].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotElevenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotElevenLock") == 0)
+                {
+                    powerBankSlots[slotEleven].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotTwelveLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotTwelveLock") == 0)
+                {
+                    powerBankSlots[slotTwelve].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotThirteenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotThirteenLock") == 0)
+                {
+                    powerBankSlots[slotThirteen].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotFourteenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotFourteenLock") == 0)
+                {
+                    powerBankSlots[slotFourteen].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotFifteenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotFifteenLock") == 0)
+                {
+                    powerBankSlots[slotFifteen].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotSixteenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotSixteenLock") == 0)
+                {
+                    powerBankSlots[slotSixteen].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotSeventeenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotSeventeenLock") == 0)
+                {
+                    powerBankSlots[slotSeventeen].SetUnlocked();
+                }
+            }
+            if (PlayerPrefs.HasKey("pbSlotEightteenLock"))
+            {
+                if (PlayerPrefs.GetInt("pbSlotEightteenLock") == 0)
+                {
+                    powerBankSlots[slotEightteen].SetUnlocked();
+                }
+            }
         }
 
         void InitializeSlots()
@@ -108,9 +354,11 @@ namespace powerbankcomponent
             pollutionPerSecond = 0;
             foreach (KeyValuePair<Button, PowerBankSlot> entry in powerBankSlots)
             {
-                if(entry.Value.GetType() == typeof(PollutingEnergyGenerator))
+                //if(entry.Value.GetType() == typeof(PollutingEnergyGenerator))
+                //{
+                if (!entry.Value.GetEmpty())
                 {
-                    pollutionPerSecond = pollutionPerSecond + entry.Value.GetGenerator().GetEnergyRate();
+                    pollutionPerSecond = pollutionPerSecond + entry.Value.GetGenerator().GetPollutionRate();
                 }
             }
             UpdatePerSecond();
@@ -167,6 +415,198 @@ namespace powerbankcomponent
             }
 
  
+        }
+        public void SaveGenerators()
+        {
+            int counter = 1;
+            foreach(KeyValuePair<Button, PowerBankSlot> entry in powerBankSlots)
+            {
+                if(counter == 2)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotTwo", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 3)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotThree", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 4)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        Debug.Log("Made it Here");
+                        PlayerPrefs.SetString("genSlotFour", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 5)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotFive", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 6)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotSix", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 7)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotSeven", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 8)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotEight", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 9)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotNine", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 10)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotTen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 11)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotEleven", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 12)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotTwelve", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 13)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotThirteen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 14)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotFourteen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 15)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotFifteen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 16)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotSixteen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 17)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotSeventeen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                else if (counter == 18)
+                {
+                    if (!entry.Value.GetEmpty())
+                    {
+                        PlayerPrefs.SetString("genSlotEightteen", entry.Value.GetGenerator().GetTypeExplicit());
+                    }
+                }
+                counter++;
+            }
+        }
+        
+        public bool CheckLockedSlot(int slot)
+        {
+            switch (slot)
+            {
+                case 1:
+                    break;
+                case 2:
+                    return powerBankSlots[slotTwo].GetLocked();
+                    break;
+                case 3:
+                    return powerBankSlots[slotThree].GetLocked();
+                    break;
+                case 4:
+                    return powerBankSlots[slotFour].GetLocked();
+                    break;
+                case 5:
+                    return powerBankSlots[slotFive].GetLocked();
+                    break;
+                case 6:
+                    return powerBankSlots[slotSix].GetLocked();
+                    break;
+                case 7:
+                    return powerBankSlots[slotSeven].GetLocked();
+                    break;
+                case 8:
+                    return powerBankSlots[slotEight].GetLocked();
+                    break;
+                case 9:
+                    return powerBankSlots[slotNine].GetLocked();
+                    break;
+                case 10:
+                    return powerBankSlots[slotTen].GetLocked();
+                    break;
+                case 11:
+                    return powerBankSlots[slotEleven].GetLocked();
+                    break;
+                case 12:
+                    return powerBankSlots[slotTwelve].GetLocked();
+                    break;
+                case 13:
+                    return powerBankSlots[slotThirteen].GetLocked();
+                    break;
+                case 14:
+                    return powerBankSlots[slotFourteen].GetLocked();
+                    break;
+                case 15:
+                    return powerBankSlots[slotFifteen].GetLocked();
+                    break;
+                case 16:
+                    return powerBankSlots[slotSixteen].GetLocked();
+                    break;
+                case 17:
+                    return powerBankSlots[slotSeventeen].GetLocked();
+                    break;
+                case 18:
+                    return powerBankSlots[slotEightteen].GetLocked();
+                    break;
+                default:
+                    break;
+            }
+
+            return false;
         }
 
         public void UpdateSpriteFamilies()

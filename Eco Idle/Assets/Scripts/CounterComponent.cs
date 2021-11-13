@@ -23,11 +23,38 @@ namespace counterscomponent
         // Start is called before the first frame update
         void Start() //Deserializes the counters
         {
-            energyCounter.SetCurrCounter(0); //set this to a value from serializefile
-            energyCounter.SetMaxCounter(0); //set this to a value from serializefile
-
-            pollutionCounter.SetCurrCounter(0); //set this to a value from serializefile
-            pollutionCounter.SetMaxCounter(0); //set this to a value from the serializefile
+            if (PlayerPrefs.HasKey("currEnergy"))
+            {
+                energyCounter.SetCurrCounter(PlayerPrefs.GetInt("currEnergy"));
+            }
+            else
+            {
+                energyCounter.SetCurrCounter(0);
+            }
+            if (PlayerPrefs.HasKey("maxEnergy"))
+            {
+                energyCounter.SetMaxCounter(PlayerPrefs.GetInt("maxEnergy"));
+            }
+            else
+            {
+                energyCounter.SetMaxCounter(0);
+            }
+            if (PlayerPrefs.HasKey("currPollution"))
+            {
+                pollutionCounter.SetCurrCounter(PlayerPrefs.GetInt("currPollution"));
+            }
+            else
+            {
+                pollutionCounter.SetCurrCounter(0);
+            }
+            if (PlayerPrefs.HasKey("maxPollution"))
+            {
+                pollutionCounter.SetMaxCounter(PlayerPrefs.GetInt("maxPollution"));
+            }
+            else
+            {
+                pollutionCounter.SetMaxCounter(0);
+            }
 
             InitializeCounters();
 
@@ -82,6 +109,16 @@ namespace counterscomponent
         public int GetMaxPollutionCount()
         {
             return pollutionCounter.GetMaxCounter();
+        }
+
+        public void ResetEnergyCounter()
+        {
+            energyCounter.ResetCounter();
+        }
+
+        public void ResetPollutionCounter()
+        {
+            pollutionCounter.ResetCounter();
         }
 
         public void InitializeCounters()
